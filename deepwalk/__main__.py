@@ -52,6 +52,8 @@ def process(args):
     G = graph.load_adjacencylist(args.input, undirected=args.undirected)
   elif args.format == "edgelist":
     G = graph.load_edgelist(args.input, undirected=args.undirected)
+  elif args.format == "pd_edgelist":
+    G = graph.load_pd_edgelist(args.input, undirected=args.undirected)
   elif args.format == "mat":
     G = graph.load_matfile(args.input, variable_name=args.matfile_variable_name, undirected=args.undirected)
   else:

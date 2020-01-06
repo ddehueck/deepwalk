@@ -251,6 +251,22 @@ def load_edgelist(file_, undirected=True):
   G.make_consistent()
   return G
 
+def load_pd_edgelist(file_, undirected=True):
+  """ Reads from a pd dataframe saved to a CSV as an edgelist """
+  G = Graph()
+  with open(file_) as f:
+    f.readline()   # skip the first line
+    for l in f:
+      x, y = l.split(',')[1:]
+      x = int(x)
+      y = int(y)
+      G[x].append(y)
+      if undirected:
+        G[y].append(x)
+  
+  G.make_consistent()
+  return G
+
 
 def load_matfile(file_, variable_name="network", undirected=True):
   mat_varables = loadmat(file_)
